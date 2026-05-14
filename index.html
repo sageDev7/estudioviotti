@@ -61,7 +61,7 @@
     .topbar-item a:hover { color: var(--gold); }
 
     /* ── HEADER — desktop sticky, mobile fixed transparente ── */
-    header { background: var(--white); padding: 1rem 5%; display: flex; align-items: center; justify-content: center; gap: 3rem; border-bottom: 1px solid var(--cream-dk); position: sticky; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(65,57,52,0.08); transition: background 0.4s, border-color 0.4s, box-shadow 0.4s; }
+    header { background: var(--white); padding: 1rem 5%; display: flex; align-items: center; justify-content: center; gap: 3rem; border-bottom: 1px solid var(--cream-dk); position: sticky; top: 0; left: 0; right: 0; box-shadow: 0 2px 20px rgba(65,57,52,0.08); transition: background 0.4s, border-color 0.4s, box-shadow 0.4s; }
     .h-logo { flex-shrink: 0; }
     .h-logo img { height: 56px; display: block; transition: filter 0.4s; }
     nav { display: flex; align-items: center; gap: 0; }
@@ -79,7 +79,7 @@
     #menu-open.white span { background: var(--white); }
 
     /* ── MOBILE NAV panel ── */
-    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
+    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1002; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
     #mobile-nav.open { transform: translateX(0); }
     #menu-toggle { position: absolute; top: 1.6rem; right: 1.6rem; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; z-index: 1; }
     #menu-toggle span { display: block; width: 22px; height: 2px; background: var(--brown); transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.25s; transform-origin: center; }
@@ -221,7 +221,7 @@
     @keyframes wapulse { 0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.3); } 50% { box-shadow: 0 4px 28px rgba(37,211,102,0.55), 0 0 0 7px rgba(37,211,102,0.07); } }
 
     /* ── BACK TO TOP ── */
-    .back-top { position: fixed; bottom: 88px; right: 26px; width: 42px; height: 42px; background: var(--brown); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 0.9rem; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.3s, background 0.3s; cursor: pointer; border: none; }
+    .back-top { position: fixed; bottom: 88px; right: 26px; width: 52px; height: 52px; background: var(--brown); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1rem; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.3s, background 0.3s; cursor: pointer; border: none; }
     .back-top.visible { opacity: 1; pointer-events: auto; }
     .back-top:hover { background: var(--gold-dk); transform: translateY(-3px); }
 
@@ -236,6 +236,9 @@
     .stagger-child.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
+    @media (min-width: 769px) {
+      header { z-index: 100; }
+    }
     @media (max-width: 1024px) {
       .quienes-inner { grid-template-columns: 1fr; gap: 3rem; }
       .estudios-grid { grid-template-columns: 1fr; }
@@ -246,7 +249,7 @@
       /* Top bar oculto */
       .topbar { display: none; }
       /* Header fixed transparente */
-      header { position: fixed; top: 0; left: 0; right: 0; background: var(--white); transition: background 0.4s, box-shadow 0.4s; padding: 0.9rem 5%; min-height: 68px; justify-content: center; border-bottom: none; box-shadow: none; z-index: 1002; }
+      header { position: fixed; top: 0; left: 0; right: 0; background: var(--white); transition: background 0.4s, box-shadow 0.4s; padding: 0.9rem 5%; min-height: 68px; justify-content: center; border-bottom: none; box-shadow: none; z-index: 999; }
       header.scrolled { background: var(--white); box-shadow: 0 2px 16px rgba(65,57,52,0.1); border-bottom: 1px solid var(--cream-dk); }
       header.transparent { background: transparent; box-shadow: none; }
       header.transparent .h-logo img { filter: brightness(0) invert(1); }
@@ -340,7 +343,7 @@
   <div class="h-logo"><a href="#"><img src="./logo.png" alt="Estudio Viotti Abogados" /></a></div>
   <nav>
     <a href="#quienes">Inicio</a>
-    <a href="./planificacion.html">Planificaci&oacute;n</a>
+    <a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a>
     <a href="./laboral.html">Laboral</a>
     <a href="./sucesiones.html">Sucesiones</a>
     <a href="./divorcios.html">Divorcios</a>
@@ -349,8 +352,9 @@
   <button id="menu-open" aria-label="Abrir men&uacute;"><span></span><span></span><span></span></button>
 </header>
 <nav id="mobile-nav">
+  <button id="menu-toggle" aria-label="Cerrar men&uacute;"><span></span><span></span><span></span></button>
   <a href="#quienes">Inicio</a>
-  <a href="./planificacion.html">Planificaci&oacute;n</a>
+  <a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a>
   <a href="./laboral.html">Derecho Laboral</a>
   <a href="./sucesiones.html">Sucesiones</a>
   <a href="./divorcios.html">Divorcios</a>
@@ -365,7 +369,7 @@
       <h1>Experiencia profesional para asistencia <em>jur&iacute;dica personalizada</em></h1>
       <p class="hero-lead">Brindamos asesoramiento jur&iacute;dico integral y din&aacute;mico, interpretando los intereses de cada cliente para ofrecer una respuesta personal y eficaz.</p>
       <div class="hero-ctas">
-        <a href="#contacto" class="btn btn-gold">Agendar entrevista</a>
+        <a href="https://wa.me/5491150105070?text=Solicito%20una%20entrevista%20para%20hacer%20una%20consulta%20jur%C3%ADdica." target="_blank" class="btn btn-gold">Agendar entrevista</a>
         <a href="#areas" class="btn btn-outline-lt">Ver &aacute;reas de pr&aacute;ctica</a>
       </div>
     </div>
@@ -399,7 +403,7 @@
       <p>Desde <strong>1968</strong> brindamos asistencia jur&iacute;dica integral y din&aacute;mica, interpretando los intereses de cada cliente para brindar una respuesta personal y eficaz.</p>
       <p>Entendemos sobre el tiempo y el costo de desarrollo de cada proceso para ofrecer una soluci&oacute;n acorde a las posibilidades de cada caso. <strong>M&aacute;s de 4.000 casos resueltos</strong> en diversas instancias avalan nuestra experiencia para brindar seguridad jur&iacute;dica.</p>
       <p>En el transcurso de estos 58 a&ntilde;os las recomendaciones de clientes satisfechos hicieron posible que el estudio se desarrolle, expanda y diversifique incorporando herramientas para la resoluci&oacute;n de conflictos.</p>
-      <a href="#contacto" class="btn btn-gold" style="margin-top:0.8rem;">Agendar consulta</a>
+      <a href="https://wa.me/5491150105070?text=Solicito%20una%20entrevista%20para%20hacer%20una%20consulta%20jur%C3%ADdica." target="_blank" class="btn btn-gold" style="margin-top:0.8rem;">Agendar entrevista</a>
     </div>
     <div class="quienes-right reveal-right" style="transition-delay:0.1s">
       <div class="q-dato">
@@ -438,7 +442,7 @@
 <section id="cta-band">
   <div class="cta-band-inner reveal">
     <p>Reciba asesoramiento <em>profesional</em> de nuestros especialistas</p>
-    <a href="#contacto" class="btn btn-gold">Agendar entrevista</a>
+    <a href="https://wa.me/5491150105070?text=Solicito%20una%20entrevista%20para%20hacer%20una%20consulta%20jur%C3%ADdica." target="_blank" class="btn btn-gold">Agendar entrevista</a>
   </div>
 </section>
 
@@ -455,7 +459,7 @@
           <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Planificación Patrimonial" />
         </div>
         <div class="area-card-body">
-          <h3>Planificaci&oacute;n</h3>
+          <h3>Planificaci&oacute;n Patrimonial</h3>
           <p>Asesoramiento estrat&eacute;gico para la protecci&oacute;n y organizaci&oacute;n de su patrimonio, garantizando seguridad jur&iacute;dica para usted y su familia.</p>
           <a href="./planificacion.html" class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -587,7 +591,7 @@
     <div class="footer-col">
       <h4>&Aacute;reas de pr&aacute;ctica</h4>
       <ul>
-        <li><a href="./planificacion.html">Planificaci&oacute;n</a></li>
+        <li><a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a></li>
         <li><a href="./laboral.html">Derecho Laboral</a></li>
         <li><a href="./sucesiones.html">Sucesiones</a></li>
         <li><a href="./divorcios.html">Divorcios</a></li>
@@ -647,13 +651,9 @@
   updateHeaderState();
 
   // HAMBURGER
-  menuOpen.addEventListener('click', () => {
-    const open = !mNav.classList.contains('open');
-    menuOpen.classList.toggle('open', open);
-    mNav.classList.toggle('open', open);
-  });
+  menuOpen.addEventListener('click', () => mNav.classList.add('open'));
+  document.getElementById('menu-toggle').addEventListener('click', () => mNav.classList.remove('open'));
   document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => {
-    menuOpen.classList.remove('open');
     mNav.classList.remove('open');
     updateHeaderState();
   }));
