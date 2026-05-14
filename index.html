@@ -73,19 +73,19 @@
     .nav-cta:hover { background: var(--gold-dk) !important; }
     .nav-cta::after { display: none !important; }
 
-    /* ── HAMBURGER ── */
-    #hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; position: fixed; right: 5%; z-index: 1003; border-radius: 4px; transition: background 0.3s; }
-    #hamburger.open { background: var(--white); }
-    #hamburger span { display: block; width: 22px; height: 2px; background: var(--brown); transition: background 0.4s, transform 0.3s, opacity 0.3s; }
-    #hamburger.white span { background: var(--white); }
-    #hamburger.open span { background: var(--brown) !important; }
-    #hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    #hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* ── HAMBURGER (trigger en header) ── */
+    #menu-open { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); z-index: 1; }
+    #menu-open span { display: block; width: 22px; height: 2px; background: var(--brown); transition: background 0.4s; }
+    #menu-open.white span { background: var(--white); }
 
     /* ── MOBILE NAV panel ── */
     #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
     #mobile-nav.open { transform: translateX(0); }
+    #menu-toggle { position: absolute; top: 1.6rem; right: 1.6rem; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; z-index: 1; }
+    #menu-toggle span { display: block; width: 22px; height: 2px; background: var(--brown); transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.25s; transform-origin: center; }
+    #mobile-nav.open #menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #mobile-nav.open #menu-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #mobile-nav.open #menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     #mobile-nav a { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); padding: 0.9rem 0; border-bottom: 1px solid var(--cream-dk); transition: color 0.25s; }
     #mobile-nav a:last-child { border-bottom: none; }
     #mobile-nav a:hover { color: var(--gold); }
@@ -252,8 +252,7 @@
       header.transparent .h-logo img { filter: brightness(0) invert(1); }
       /* Nav oculto, hamburger visible */
       nav { display: none; }
-      #hamburger { display: flex; top: 50%; transform: translateY(-50%); top: 34px; }
-      #hamburger.white span { background: var(--white); }
+      #menu-open { display: flex; }
       /* Hero ocupa toda la pantalla */
       #hero { min-height: 100vh; padding-top: 68px; box-sizing: border-box; }
       .hero-left { text-align: center; }
@@ -341,20 +340,20 @@
   <div class="h-logo"><a href="#"><img src="./logo.png" alt="Estudio Viotti Abogados" /></a></div>
   <nav>
     <a href="#quienes">Inicio</a>
-    <a href="#areas">Planificaci&oacute;n</a>
-    <a href="#areas">Laboral</a>
-    <a href="#areas">Sucesiones</a>
-    <a href="#areas">Divorcios</a>
+    <a href="./planificacion.html">Planificaci&oacute;n</a>
+    <a href="./laboral.html">Laboral</a>
+    <a href="./sucesiones.html">Sucesiones</a>
+    <a href="./divorcios.html">Divorcios</a>
     <a href="#contacto" class="nav-cta">Contacto</a>
   </nav>
-  <button id="hamburger" aria-label="Men&uacute;"><span></span><span></span><span></span></button>
+  <button id="menu-open" aria-label="Abrir men&uacute;"><span></span><span></span><span></span></button>
 </header>
 <nav id="mobile-nav">
   <a href="#quienes">Inicio</a>
-  <a href="#areas">Planificaci&oacute;n Patrimonial</a>
-  <a href="#areas">Derecho Laboral</a>
-  <a href="#areas">Sucesiones</a>
-  <a href="#areas">Divorcios</a>
+  <a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a>
+  <a href="./laboral.html">Derecho Laboral</a>
+  <a href="./sucesiones.html">Sucesiones</a>
+  <a href="./divorcios.html">Divorcios</a>
   <a href="#contacto">Contacto</a>
 </nav>
 
@@ -458,7 +457,7 @@
         <div class="area-card-body">
           <h3>Planificaci&oacute;n Patrimonial</h3>
           <p>Asesoramiento estrat&eacute;gico para la protecci&oacute;n y organizaci&oacute;n de su patrimonio, garantizando seguridad jur&iacute;dica para usted y su familia.</p>
-          <div class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></div>
+          <a href="./planificacion.html" class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="area-card stagger-child">
@@ -468,7 +467,7 @@
         <div class="area-card-body">
           <h3>Derecho Laboral</h3>
           <p>Defensa de los derechos de trabajadores y empleadores. Despidos, indemnizaciones, accidentes de trabajo y conflictos laborales.</p>
-          <div class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></div>
+          <a href="./laboral.html" class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="area-card stagger-child">
@@ -478,7 +477,7 @@
         <div class="area-card-body">
           <h3>Sucesiones</h3>
           <p>Tramitaci&oacute;n integral de herencias y sucesiones. Acompa&ntilde;amos en cada etapa del proceso para resolver la situaci&oacute;n de forma &aacute;gil y segura.</p>
-          <div class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></div>
+          <a href="./sucesiones.html" class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="area-card stagger-child">
@@ -488,7 +487,7 @@
         <div class="area-card-body">
           <h3>Divorcios</h3>
           <p>Asesoramiento en procesos de divorcio, separaci&oacute;n de bienes, alimentos y cuidado personal de los hijos. Con discrecci&oacute;n y profesionalismo.</p>
-          <div class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></div>
+          <a href="./divorcios.html" class="area-card-link">Ver m&aacute;s <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -588,10 +587,10 @@
     <div class="footer-col">
       <h4>&Aacute;reas de pr&aacute;ctica</h4>
       <ul>
-        <li><a href="#areas">Planificaci&oacute;n Patrimonial</a></li>
-        <li><a href="#areas">Derecho Laboral</a></li>
-        <li><a href="#areas">Sucesiones</a></li>
-        <li><a href="#areas">Divorcios</a></li>
+        <li><a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a></li>
+        <li><a href="./laboral.html">Derecho Laboral</a></li>
+        <li><a href="./sucesiones.html">Sucesiones</a></li>
+        <li><a href="./divorcios.html">Divorcios</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -624,7 +623,7 @@
 
   // REFERENCIAS
   const headerEl = document.querySelector('header');
-  const hbg = document.getElementById('hamburger');
+  const menuOpen = document.getElementById('menu-open');
   const mNav = document.getElementById('mobile-nav');
 
   // HEADER TRANSPARENTE EN MOBILE
@@ -637,10 +636,10 @@
     if (isMobile) {
       headerEl.classList.toggle('transparent', !scrolled);
       headerEl.classList.toggle('scrolled', scrolled);
-      hbg.classList.toggle('white', !scrolled);
+      menuOpen.classList.toggle('white', !scrolled);
     } else {
       headerEl.classList.remove('transparent', 'scrolled');
-      hbg.classList.remove('white');
+      menuOpen.classList.remove('white');
     }
   }
   window.addEventListener('scroll', updateHeaderState);
@@ -648,13 +647,13 @@
   updateHeaderState();
 
   // HAMBURGER
-  hbg.addEventListener('click', () => {
+  menuOpen.addEventListener('click', () => {
     const open = !mNav.classList.contains('open');
-    hbg.classList.toggle('open', open);
+    menuOpen.classList.toggle('open', open);
     mNav.classList.toggle('open', open);
   });
   document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => {
-    hbg.classList.remove('open');
+    menuOpen.classList.remove('open');
     mNav.classList.remove('open');
     updateHeaderState();
   }));

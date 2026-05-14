@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planificación Patrimonial — Estudio Viotti Abogados</title>
+  <meta name="description" content="Planificación patrimonial integral: donaciones, testamentos, herencias y fideicomisos. Estudio Viotti Abogados, desde 1968." />
+  <link rel="icon" type="image/png" href="./logotipo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --gold:      #c6a057;
+      --gold-lt:   #bfaa80;
+      --gold-dk:   #a07d3a;
+      --brown:     #413934;
+      --brown-lt:  #5a4f47;
+      --cream:     #f9f6f0;
+      --cream-dk:  #f0ebe1;
+      --white:     #ffffff;
+      --black:     #0f0d0b;
+      --gray:      #888580;
+      --gray-lt:   #c4c0ba;
+      --border:    rgba(198,160,87,0.2);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-body:  'DM Sans', sans-serif;
+      --grad:       linear-gradient(135deg, var(--gold), var(--gold-lt));
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--brown); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── TOP BAR ── */
+    .topbar { background: var(--black); padding: 0.65rem 5%; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; border-bottom: 1px solid rgba(198,160,87,0.15); }
+    .topbar-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+    .topbar-item i { color: var(--gold-lt); font-size: 0.75rem; }
+    .topbar-item strong { font-weight: 600; color: var(--white); }
+    .topbar-item a { color: rgba(255,255,255,0.75); transition: color 0.25s; }
+    .topbar-item a:hover { color: var(--gold); }
+
+    /* ── HEADER ── */
+    header { background: var(--white); padding: 1rem 5%; display: flex; align-items: center; justify-content: center; gap: 3rem; border-bottom: 1px solid var(--cream-dk); position: sticky; top: 0; box-shadow: 0 2px 20px rgba(65,57,52,0.08); transition: background 0.4s, border-color 0.4s, box-shadow 0.4s; }
+    .h-logo { flex-shrink: 0; }
+    .h-logo img { height: 56px; display: block; }
+    nav { display: flex; align-items: center; gap: 0; }
+    nav a { font-family: var(--font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brown); padding: 0.5rem 1.1rem; transition: color 0.25s; position: relative; white-space: nowrap; }
+    nav a::after { content: ''; position: absolute; bottom: -2px; left: 1.1rem; right: 1.1rem; height: 2px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
+    nav a:hover { color: var(--gold-dk); }
+    nav a:hover::after { transform: scaleX(1); }
+    nav a.active { color: var(--gold-dk); }
+    nav a.active::after { transform: scaleX(1); }
+    .nav-cta { background: var(--gold); color: var(--white) !important; padding: 0.6rem 1.4rem; margin-left: 0.8rem; font-weight: 700; }
+    .nav-cta:hover { background: var(--gold-dk) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* ── HAMBURGER (trigger en header) ── */
+    #menu-open { display: none; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; position: absolute; right: 5%; top: 50%; transform: translateY(-50%); z-index: 1; }
+    #menu-open span { display: block; width: 22px; height: 2px; background: var(--brown); }
+
+    /* ── MOBILE NAV ── */
+    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
+    #mobile-nav.open { transform: translateX(0); }
+    /* Botón toggle dentro del panel */
+    #menu-toggle { position: absolute; top: 1.6rem; right: 1.6rem; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; z-index: 1; }
+    #menu-toggle span { display: block; width: 22px; height: 2px; background: var(--brown); transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.25s; transform-origin: center; }
+    /* Estado: 3 rayas (panel cerrado — no visible) → cuando abre, muestra X */
+    #mobile-nav.open #menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #mobile-nav.open #menu-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #mobile-nav.open #menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #mobile-nav a { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); padding: 0.9rem 0; border-bottom: 1px solid var(--cream-dk); transition: color 0.25s; }
+    #mobile-nav a:last-child { border-bottom: none; }
+    #mobile-nav a:hover, #mobile-nav a.active { color: var(--gold); }
+
+    /* ── HERO INTERIOR ── */
+    #hero-int { min-height: 52vh; background: var(--black); display: flex; align-items: flex-end; position: relative; overflow: hidden; padding-bottom: 5rem; }
+    #hero-int::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1800&q=80'); background-size: cover; background-position: center 35%; filter: grayscale(30%) brightness(0.38); }
+    #hero-int::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.5) 60%, transparent 100%); }
+    .hero-int-inner { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 5%; width: 100%; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.8rem; }
+    .breadcrumb a { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); transition: color 0.25s; }
+    .breadcrumb a:hover { color: var(--gold-lt); }
+    .breadcrumb span { font-size: 0.68rem; color: rgba(255,255,255,0.2); }
+    .breadcrumb .current { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-lt); }
+    .hero-int-eyebrow { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.4rem; }
+    .hero-int-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+    .hero-int-eyebrow span { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-lt); }
+    .hero-int-inner h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 600; color: var(--white); line-height: 1.1; max-width: 700px; margin-bottom: 1.2rem; }
+    .hero-int-inner h1 em { font-style: italic; color: var(--gold-lt); }
+    .hero-int-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.5); line-height: 1.88; font-weight: 300; max-width: 580px; }
+
+    /* ── BOTONES ── */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 1rem 2.2rem; cursor: pointer; border: none; transition: all 0.3s; }
+    .btn-gold { background: var(--gold); color: var(--white); }
+    .btn-gold:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(198,160,87,0.35); }
+    .btn-outline { background: transparent; color: var(--brown); border: 1.5px solid rgba(65,57,52,0.35); }
+    .btn-outline:hover { background: var(--brown); color: var(--white); }
+
+    /* ── INTRO ── */
+    #intro { padding: 100px 5%; background: var(--white); position: relative; overflow: hidden; }
+    #intro::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(198,160,87,0.15) 1.5px, transparent 1.5px); background-size: 26px 26px; pointer-events: none; }
+    .intro-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 7rem; align-items: start; position: relative; z-index: 1; }
+    .intro-left h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 600; color: var(--black); line-height: 1.1; margin-bottom: 0.5rem; }
+    .intro-left h2 em { font-style: italic; color: var(--gold); }
+    .section-rule { width: 44px; height: 3px; background: var(--gold); display: block; margin: 1.2rem 0 1.8rem; }
+    .intro-left p { font-size: 0.93rem; color: rgba(15,13,11,0.62); line-height: 1.92; font-weight: 300; margin-bottom: 1rem; }
+    .intro-left p strong { color: var(--black); font-weight: 600; }
+    .intro-left .btn { margin-top: 1.2rem; }
+    /* Stats lateral */
+    .intro-right { display: flex; flex-direction: column; gap: 1px; background: var(--cream-dk); position: sticky; top: 120px; }
+    .intro-stat { background: var(--white); padding: 1.8rem 2rem; display: flex; align-items: center; gap: 1.4rem; transition: background 0.3s, padding-left 0.3s; }
+    .intro-stat:hover { background: var(--cream); padding-left: 2.4rem; }
+    .intro-stat-num { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 700; color: var(--gold); font-style: italic; line-height: 1; flex-shrink: 0; }
+    .intro-stat-text h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 0.25rem; }
+    .intro-stat-text p { font-size: 0.82rem; color: var(--gray); font-weight: 300; line-height: 1.5; }
+
+    /* ── FAQ / PREGUNTAS ── */
+    #preguntas { padding: 100px 5%; background: var(--black); position: relative; overflow: hidden; }
+    #preguntas::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(198,160,87,0.08) 1.5px, transparent 1.5px); background-size: 26px 26px; pointer-events: none; }
+    .preguntas-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .preguntas-header { text-align: center; margin-bottom: 4rem; }
+    .preguntas-header h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 600; color: var(--white); line-height: 1.1; }
+    .preguntas-header h2 em { font-style: italic; color: var(--gold); }
+    .preguntas-rule { width: 44px; height: 3px; background: var(--gold); display: block; margin: 1rem auto 0; }
+    .faq-list { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.06); }
+    .faq-item { background: rgba(255,255,255,0.03); border-top: 1px solid rgba(198,160,87,0.15); }
+    .faq-item:first-child { border-top: 2px solid var(--gold); }
+    .faq-q { width: 100%; background: none; border: none; padding: 1.8rem 2rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; gap: 1.5rem; text-align: center; }
+    .faq-q-text { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--white); line-height: 1.3; flex: 1; text-align: center; }
+    .faq-icon { width: 32px; height: 32px; border: 1.5px solid rgba(198,160,87,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.3s, background 0.3s; }
+    .faq-icon i { color: var(--gold); font-size: 0.75rem; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); }
+    .faq-item.open .faq-icon i { color: var(--white); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .faq-a-inner { padding: 0 2rem 1.8rem; font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.88; font-weight: 300; text-align: center; }
+    .faq-item.open .faq-a { max-height: 400px; }
+
+    /* ── ENFOQUE ── */
+    #enfoque { padding: 100px 5%; background: var(--cream); position: relative; overflow: hidden; }
+    #enfoque::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-55deg, transparent, transparent 48px, rgba(198,160,87,0.1) 48px, rgba(198,160,87,0.1) 49px); }
+    .enfoque-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .enfoque-header { text-align: center; margin-bottom: 4rem; }
+    .enfoque-header h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 600; color: var(--black); line-height: 1.1; }
+    .enfoque-header h2 em { font-style: italic; color: var(--gold); }
+    .enfoque-rule { width: 44px; height: 3px; background: var(--gold); display: block; margin: 1rem auto 0; }
+    .enfoque-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .enfoque-card { background: var(--white); padding: 2.4rem 2rem; border-top: 3px solid var(--gold); transition: transform 0.3s, box-shadow 0.3s; }
+    .enfoque-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(65,57,52,0.12); }
+    .enfoque-num { font-family: var(--font-serif); font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1; font-style: italic; margin-bottom: 1rem; opacity: 0.5; }
+    .enfoque-card h3 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--black); margin-bottom: 0.7rem; }
+    .enfoque-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.78; font-weight: 300; }
+
+    /* ── CTA BAND ── */
+    #cta-band { background: var(--black); padding: 80px 5%; text-align: center; position: relative; overflow: hidden; }
+    #cta-band::before { content: ''; position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1400&q=80'); background-size: cover; background-position: center; filter: grayscale(100%) brightness(0.3); opacity: 0.4; }
+    #cta-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.75) 100%); }
+    .cta-band-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .cta-band-inner p { font-family: var(--font-serif); font-size: clamp(1.4rem, 2.8vw, 2.4rem); font-weight: 400; font-style: italic; color: var(--white); margin-bottom: 1.8rem; line-height: 1.4; }
+    .cta-band-inner p em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+    /* ── OTRAS ÁREAS ── */
+    #otras { padding: 80px 5%; background: var(--white); }
+    .otras-inner { max-width: 1100px; margin: 0 auto; }
+    .otras-header { text-align: center; margin-bottom: 3rem; }
+    .otras-header h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 600; color: var(--black); }
+    .otras-header h2 em { font-style: italic; color: var(--gold); }
+    .otras-rule { width: 44px; height: 3px; background: var(--gold); display: block; margin: 0.8rem auto 0; }
+    .otras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .otra-card { border: 1px solid var(--cream-dk); padding: 1.8rem 1.6rem; display: flex; align-items: center; gap: 0; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; position: relative; }
+    .otra-card:hover { border-color: var(--gold); box-shadow: 0 6px 24px rgba(198,160,87,0.12); transform: translateY(-3px); }
+    .otra-card-icon { width: 38px; height: 38px; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: absolute; left: 1.6rem; }
+    .otra-card-icon i { color: var(--white); font-size: 0.85rem; }
+    .otra-card-text { flex: 1; text-align: center; }
+    .otra-card h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--black); margin-bottom: 0.2rem; }
+    .otra-card span { font-size: 0.78rem; color: var(--gold-dk); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); padding: 48px 5% 24px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand img { height: 44px; filter: brightness(0) invert(1); opacity: 0.7; margin-bottom: 1.2rem; }
+    .footer-brand p { font-size: 0.84rem; color: rgba(255,255,255,0.35); line-height: 1.8; font-weight: 300; max-width: 280px; }
+    .footer-col h4 { font-family: var(--font-body); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 1.2rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.55rem; }
+    .footer-col ul li a { font-size: 0.84rem; color: rgba(255,255,255,0.45); transition: color 0.25s; font-weight: 300; }
+    .footer-col ul li a:hover { color: var(--gold-lt); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+    .footer-bottom a { color: var(--gold-lt); font-size: 0.78rem; transition: color 0.25s; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── WA FLOAT + BACK TOP ── */
+    .wa-float { position: fixed; bottom: 26px; right: 26px; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.4rem; z-index: 999; animation: wapulse 2.5s infinite; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+    .wa-float.visible { opacity: 1; pointer-events: auto; }
+    .wa-float:hover { transform: scale(1.08); }
+    @keyframes wapulse { 0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.3); } 50% { box-shadow: 0 4px 28px rgba(37,211,102,0.55), 0 0 0 7px rgba(37,211,102,0.07); } }
+    .back-top { position: fixed; bottom: 88px; right: 26px; width: 42px; height: 42px; background: var(--brown); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 0.9rem; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.3s, background 0.3s; cursor: pointer; border: none; }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--gold-dk); transform: translateY(-3px); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(24px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .stagger-child { opacity: 0; transform: translateY(16px); transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1); }
+    .stagger-child.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .intro-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .intro-right { position: static; }
+      .enfoque-grid { grid-template-columns: 1fr 1fr; }
+      .otras-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .topbar { display: none; }
+      header { position: fixed; top: 0; left: 0; right: 0; padding: 0.9rem 5%; min-height: 68px; justify-content: center; border-bottom: 1px solid var(--cream-dk); z-index: 1000; }
+      nav { display: none; }
+      #menu-open { display: flex; }
+      #hero-int { min-height: 60vh; padding-top: 68px; padding-bottom: 3.5rem; align-items: flex-end; }
+      .hero-int-inner h1 { font-size: 2rem; }
+      .hero-int-inner p { font-size: 0.88rem; }
+      .enfoque-grid { grid-template-columns: 1fr; }
+      .otras-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .footer-brand img { margin: 0 auto 1.2rem; }
+      .footer-brand p { max-width: 100%; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      #intro, #preguntas, #enfoque { padding: 70px 5%; }
+      #otras { padding: 60px 5%; }
+      .faq-q { padding: 1.4rem 1.2rem; }
+      .faq-a-inner { padding: 0 1.2rem 1.4rem; }
+      .intro-inner { text-align: center; }
+      .section-rule { margin: 1.2rem auto; }
+    }
+    @media (max-width: 480px) {
+      .hero-int-inner h1 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-item">
+    <i class="fa-brands fa-whatsapp"></i>
+    <a href="https://wa.me/5491150105070" target="_blank"><strong>+54 911 5010-5070</strong> &nbsp;WhatsApp</a>
+  </div>
+  <div class="topbar-item">
+    <i class="fa-solid fa-phone"></i>
+    <span><strong>11 4807-3275</strong> &nbsp;Tel&eacute;fono</span>
+  </div>
+  <div class="topbar-item">
+    <i class="fa-solid fa-location-dot"></i>
+    <span>Gral San Mart&iacute;n: <strong>San Lorenzo 2108, 4&deg; Of. 4</strong></span>
+  </div>
+  <div class="topbar-item">
+    <i class="fa-solid fa-location-dot"></i>
+    <span>Villa del Parque: <strong>Concordia 3430</strong></span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="h-logo"><a href="./index.html"><img src="./logo.png" alt="Estudio Viotti Abogados" /></a></div>
+  <nav>
+    <a href="./index.html">Inicio</a>
+    <a href="./planificacion.html" class="active">Planificaci&oacute;n</a>
+    <a href="./laboral.html">Laboral</a>
+    <a href="./sucesiones.html">Sucesiones</a>
+    <a href="./divorcios.html">Divorcios</a>
+    <a href="./index.html#contacto" class="nav-cta">Contacto</a>
+  </nav>
+  <button id="menu-open" aria-label="Abrir men&uacute;"><span></span><span></span><span></span></button>
+</header>
+<nav id="mobile-nav">
+  <button id="menu-toggle" aria-label="Cerrar men&uacute;"><span></span><span></span><span></span></button>
+  <a href="./index.html">Inicio</a>
+  <a href="./planificacion.html" class="active">Planificaci&oacute;n Patrimonial</a>
+  <a href="./laboral.html">Derecho Laboral</a>
+  <a href="./sucesiones.html">Sucesiones</a>
+  <a href="./divorcios.html">Divorcios</a>
+  <a href="./index.html#contacto">Contacto</a>
+</nav>
+
+<!-- HERO INTERIOR -->
+<section id="hero-int">
+  <div class="hero-int-inner">
+    <div class="breadcrumb">
+      <a href="./index.html">Inicio</a>
+      <span>/</span>
+      <span class="current">&Aacute;reas de pr&aacute;ctica</span>
+      <span>/</span>
+      <span class="current">Planificaci&oacute;n Patrimonial</span>
+    </div>
+    <h1>Planificaci&oacute;n <em>Patrimonial</em></h1>
+    <p>Proteja su patrimonio y garantice el bienestar de sus seres queridos con una planificaci&oacute;n jur&iacute;dica personalizada y efectiva.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-inner">
+    <div class="intro-left reveal-left">
+      <h2>Experiencia que <em>respalda</em></h2>
+      <div class="section-rule"></div>
+      <p>Desde <strong>1968</strong> brindamos asistencia jur&iacute;dica en los m&aacute;s diversos casos. Tenemos cientos de sucesiones terminadas y decenas de planificaciones patrimoniales ejecutadas satisfactoriamente.</p>
+      <p>Acompa&ntilde;amos y gestionamos lo necesario para proteger el patrimonio de sus seres queridos y garantizar su bienestar, cumpliendo con las decisiones que puede tomar ahora.</p>
+      <a href="./index.html#contacto" class="btn btn-gold">Agendar entrevista</a>
+    </div>
+    <div class="intro-right reveal-right" style="transition-delay:0.1s;">
+      <div class="intro-stat">
+        <div class="intro-stat-num">58</div>
+        <div class="intro-stat-text">
+          <h4>A&ntilde;os de trayectoria</h4>
+          <p>Fundado en 1968, avalado por d&eacute;cadas de resultados.</p>
+        </div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">+4.000</div>
+        <div class="intro-stat-text">
+          <h4>Casos resueltos</h4>
+          <p>Cientos de sucesiones y planificaciones ejecutadas con &eacute;xito.</p>
+        </div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">2</div>
+        <div class="intro-stat-text">
+          <h4>Sedes en Buenos Aires</h4>
+          <p>Gral San Mart&iacute;n y Villa del Parque a su disposici&oacute;n.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section id="preguntas">
+  <div class="preguntas-inner">
+    <div class="preguntas-header reveal">
+      <h2>&iquest;Qu&eacute; <em>necesita saber</em>?</h2>
+      <div class="preguntas-rule"></div>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">&iquest;Qu&eacute; es la planificaci&oacute;n patrimonial?</span>
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            La planificaci&oacute;n patrimonial es un conjunto de decisiones articuladas que implican donaciones, testamentos, herencias y, eventualmente, la constituci&oacute;n de un fideicomiso. Todo esto con el objetivo de proteger y conservar el patrimonio familiar seg&uacute;n su propia voluntad. La p&eacute;rdida de un ser querido puede ser dif&iacute;cil y los procesos legales pueden ser estresantes, por eso nos aseguramos de brindarle una atenci&oacute;n personalizada, compartiendo nuestra experiencia, poniendo a disposici&oacute;n una comunicaci&oacute;n clara y brindando soluciones efectivas a los requerimientos.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-q-text">&iquest;Qu&eacute; beneficios trae planificar con anticipaci&oacute;n?</span>
+          <span class="faq-icon"><i class="fa-solid fa-plus"></i></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            La planificaci&oacute;n patrimonial ayuda a garantizar que los bienes de una persona se transfieran de acuerdo a sus deseos despu&eacute;s de su fallecimiento. En momentos de dolor, puede ser dif&iacute;cil pensar en asuntos legales y administrativos. Minimiza impuestos y evita conflictos a futuro. Evita gastos extraordinarios y que se tomen decisiones en medio de tan particular momento como la partida de un familiar.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ENFOQUE MULTIGENERACIONAL -->
+<section id="enfoque">
+  <div class="enfoque-inner">
+    <div class="enfoque-header reveal">
+      <h2>Enfoque <em>multigeneracional</em></h2>
+      <div class="enfoque-rule"></div>
+    </div>
+    <div class="enfoque-grid reveal">
+      <div class="enfoque-card stagger-child">
+        <div class="enfoque-num">01</div>
+        <h3>Planificaci&oacute;n de sucesi&oacute;n</h3>
+        <p>Tenemos las herramientas necesarias para realizar una planificaci&oacute;n de sucesi&oacute;n efectiva y coordinarla con sus hijos o seres queridos, garantizando que su voluntad se cumpla.</p>
+      </div>
+      <div class="enfoque-card stagger-child">
+        <div class="enfoque-num">02</div>
+        <h3>Donaciones y testamentos</h3>
+        <p>Asesoramos en la redacci&oacute;n y formalizaci&oacute;n de testamentos y donaciones, protecci&oacute;n de la leg&iacute;tima hereditaria y distribuci&oacute;n de bienes con validez jur&iacute;dica plena.</p>
+      </div>
+      <div class="enfoque-card stagger-child">
+        <div class="enfoque-num">03</div>
+        <h3>Fideicomisos patrimoniales</h3>
+        <p>Constituci&oacute;n y administraci&oacute;n de fideicomisos como herramienta para preservar, organizar y transmitir el patrimonio familiar de manera ordenada y eficiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <div class="cta-band-inner reveal">
+    <p>Tome hoy las decisiones que <em>proteger&aacute;n</em> a quienes m&aacute;s quiere</p>
+    <a href="./index.html#contacto" class="btn btn-gold">Agendar entrevista</a>
+  </div>
+</section>
+
+<!-- OTRAS ÁREAS -->
+<section id="otras">
+  <div class="otras-inner">
+    <div class="otras-header reveal">
+      <h2>Otras <em>&aacute;reas</em> de pr&aacute;ctica</h2>
+      <div class="otras-rule"></div>
+    </div>
+    <div class="otras-grid reveal">
+      <a href="./laboral.html" class="otra-card stagger-child">
+        <div class="otra-card-icon"><i class="fa-solid fa-briefcase"></i></div>
+        <div class="otra-card-text">
+          <h3>Derecho Laboral</h3>
+          <span>Ver m&aacute;s <i class="fa-solid fa-arrow-right" style="font-size:0.65rem;"></i></span>
+        </div>
+      </a>
+      <a href="./sucesiones.html" class="otra-card stagger-child">
+        <div class="otra-card-icon"><i class="fa-solid fa-file-contract"></i></div>
+        <div class="otra-card-text">
+          <h3>Sucesiones</h3>
+          <span>Ver m&aacute;s <i class="fa-solid fa-arrow-right" style="font-size:0.65rem;"></i></span>
+        </div>
+      </a>
+      <a href="./divorcios.html" class="otra-card stagger-child">
+        <div class="otra-card-icon"><i class="fa-solid fa-heart-crack"></i></div>
+        <div class="otra-card-text">
+          <h3>Divorcios</h3>
+          <span>Ver m&aacute;s <i class="fa-solid fa-arrow-right" style="font-size:0.65rem;"></i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="Estudio Viotti" />
+      <p>Asesoramiento jur&iacute;dico integral desde 1968. Planificaci&oacute;n patrimonial, derecho laboral, sucesiones y divorcios.</p>
+    </div>
+    <div class="footer-col">
+      <h4>&Aacute;reas de pr&aacute;ctica</h4>
+      <ul>
+        <li><a href="./planificacion.html">Planificaci&oacute;n Patrimonial</a></li>
+        <li><a href="./laboral.html">Derecho Laboral</a></li>
+        <li><a href="./sucesiones.html">Sucesiones</a></li>
+        <li><a href="./divorcios.html">Divorcios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:1148073275">11 4807-3275</a></li>
+        <li><a href="https://wa.me/5491150105070">+54911 5010-5070</a></li>
+        <li><a href="mailto:consultas@estudioviotti.com.ar">consultas@estudioviotti.com.ar</a></li>
+        <li><a href="./index.html#contacto">San Mart&iacute;n &amp; Villa del Parque</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Estudio Viotti Abogados. Todos los derechos reservados.</p>
+    <a href="https://www.instagram.com/sageedev/" target="_blank">Desarrollado por @sageeDev</a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/5491150105070" target="_blank" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+  // REFERENCIAS
+  const mNav = document.getElementById('mobile-nav');
+
+  // SCROLL EFFECTS
+  function onScroll() {
+    const scrolled = window.scrollY > 100;
+    document.querySelector('.wa-float').classList.toggle('visible', scrolled);
+    document.getElementById('backTop').classList.toggle('visible', scrolled);
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // HAMBURGER
+  const menuOpen = document.getElementById('menu-open');
+  const menuToggle = document.getElementById('menu-toggle');
+  menuOpen.addEventListener('click', () => mNav.classList.add('open'));
+  menuToggle.addEventListener('click', () => mNav.classList.remove('open'));
+  document.querySelectorAll('#mobile-nav a').forEach(a => a.addEventListener('click', () => {
+    mNav.classList.remove('open');
+  }));
+
+  // BACK TO TOP
+  document.getElementById('backTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // REVEAL
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.stagger-child').forEach((child, i) => {
+        child.style.transitionDelay = (i * 0.1) + 's';
+        child.classList.add('visible');
+      });
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
