@@ -84,8 +84,8 @@
     #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── MOBILE NAV panel ── */
-    #mobile-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--white); border-bottom: 2px solid var(--gold); padding: 80px 5% 1.5rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateY(-110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 8px 24px rgba(65,57,52,0.15); }
-    #mobile-nav.open { transform: translateY(0); }
+    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
+    #mobile-nav.open { transform: translateX(0); }
     #mobile-nav a { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown); padding: 0.9rem 0; border-bottom: 1px solid var(--cream-dk); transition: color 0.25s; }
     #mobile-nav a:last-child { border-bottom: none; }
     #mobile-nav a:hover { color: var(--gold); }
@@ -220,6 +220,11 @@
     .wa-float:hover { transform: scale(1.08); }
     @keyframes wapulse { 0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.3); } 50% { box-shadow: 0 4px 28px rgba(37,211,102,0.55), 0 0 0 7px rgba(37,211,102,0.07); } }
 
+    /* ── BACK TO TOP ── */
+    .back-top { position: fixed; bottom: 88px; right: 26px; width: 42px; height: 42px; background: var(--brown); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 0.9rem; z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.3s, background 0.3s; cursor: pointer; border: none; }
+    .back-top.visible { opacity: 1; pointer-events: auto; }
+    .back-top:hover { background: var(--gold-dk); transform: translateY(-3px); }
+
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -336,8 +341,8 @@
   <div class="h-logo"><a href="#"><img src="./logo.png" alt="Estudio Viotti Abogados" /></a></div>
   <nav>
     <a href="#quienes">Inicio</a>
-    <a href="#areas">Planif. Patrimonial</a>
-    <a href="#areas">D. Laboral</a>
+    <a href="#areas">Planificaci&oacute;n</a>
+    <a href="#areas">Laboral</a>
     <a href="#areas">Sucesiones</a>
     <a href="#areas">Divorcios</a>
     <a href="#contacto" class="nav-cta">Contacto</a>
@@ -357,11 +362,11 @@
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow"><span>Desde 1968 &mdash; M&aacute;s de 3.000 litigios resueltos</span></div>
+      <div class="hero-eyebrow"><span>Desde 1968 &mdash; M&aacute;s de 4.000 casos resueltos</span></div>
       <h1>Experiencia profesional para asistencia <em>jur&iacute;dica personalizada</em></h1>
       <p class="hero-lead">Brindamos asesoramiento jur&iacute;dico integral y din&aacute;mico, interpretando los intereses de cada cliente para ofrecer una respuesta personal y eficaz.</p>
       <div class="hero-ctas">
-        <a href="#contacto" class="btn btn-gold">Consulte sin cargo</a>
+        <a href="#contacto" class="btn btn-gold">Agendar entrevista</a>
         <a href="#areas" class="btn btn-outline-lt">Ver &aacute;reas de pr&aacute;ctica</a>
       </div>
     </div>
@@ -372,12 +377,12 @@
 <section id="stats-band">
   <div class="stats-band-inner">
     <div class="stat-item reveal">
-      <div class="stat-item-num"><span class="counter" data-target="57" data-suffix="">0</span></div>
+      <div class="stat-item-num"><span class="counter" data-target="58" data-suffix="">0</span></div>
       <div class="stat-item-label">a&ntilde;os de trayectoria</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.1s">
-      <div class="stat-item-num"><span class="counter" data-target="3000" data-suffix="+">0</span></div>
-      <div class="stat-item-label">litigios resueltos</div>
+      <div class="stat-item-num"><span class="counter" data-target="4000" data-suffix="+">0</span></div>
+      <div class="stat-item-label">casos resueltos</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.2s">
       <div class="stat-item-num"><span class="counter" data-target="2" data-suffix="">0</span></div>
@@ -393,8 +398,8 @@
       <h2>Estudio Viotti <em>&amp; Asoc.</em></h2>
       <div class="quienes-rule"></div>
       <p>Desde <strong>1968</strong> brindamos asistencia jur&iacute;dica integral y din&aacute;mica, interpretando los intereses de cada cliente para brindar una respuesta personal y eficaz.</p>
-      <p>Entendemos sobre el tiempo y el costo de desarrollo de cada proceso para ofrecer una soluci&oacute;n acorde a las posibilidades de cada caso. <strong>M&aacute;s de 3.000 litigios resueltos</strong> en diversas instancias avalan nuestra experiencia para brindar seguridad jur&iacute;dica.</p>
-      <p>En el transcurso de estos 57 a&ntilde;os las recomendaciones de clientes satisfechos hicieron posible que el estudio se desarrolle, expanda y diversifique incorporando herramientas para la resoluci&oacute;n de conflictos.</p>
+      <p>Entendemos sobre el tiempo y el costo de desarrollo de cada proceso para ofrecer una soluci&oacute;n acorde a las posibilidades de cada caso. <strong>M&aacute;s de 4.000 casos resueltos</strong> en diversas instancias avalan nuestra experiencia para brindar seguridad jur&iacute;dica.</p>
+      <p>En el transcurso de estos 58 a&ntilde;os las recomendaciones de clientes satisfechos hicieron posible que el estudio se desarrolle, expanda y diversifique incorporando herramientas para la resoluci&oacute;n de conflictos.</p>
       <a href="#contacto" class="btn btn-gold" style="margin-top:0.8rem;">Agendar consulta</a>
     </div>
     <div class="quienes-right reveal-right" style="transition-delay:0.1s">
@@ -408,7 +413,7 @@
       <div class="q-dato">
         <div class="q-dato-icon"><i class="fa-solid fa-handshake"></i></div>
         <div>
-          <h4>Primera consulta sin cargo</h4>
+          <h4>Atenci&oacute;n personalizada</h4>
           <p>Escuchamos tu caso y coordinamos una entrevista para asesorarte.</p>
         </div>
       </div>
@@ -422,7 +427,7 @@
       <div class="q-dato">
         <div class="q-dato-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
         <div>
-          <h4>57 a&ntilde;os de trayectoria</h4>
+          <h4>58 a&ntilde;os de trayectoria</h4>
           <p>Fundado en 1968, con una historia construida en base a resultados y confianza.</p>
         </div>
       </div>
@@ -433,8 +438,8 @@
 <!-- CTA BAND -->
 <section id="cta-band">
   <div class="cta-band-inner reveal">
-    <p>Reciba asesoramiento <em>sin cargo</em> de nuestros profesionales</p>
-    <a href="#contacto" class="btn btn-gold">Consulte sin cargo</a>
+    <p>Reciba asesoramiento <em>profesional</em> de nuestros especialistas</p>
+    <a href="#contacto" class="btn btn-gold">Agendar entrevista</a>
   </div>
 </section>
 
@@ -496,7 +501,7 @@
     <div class="contacto-top reveal">
       <h2>Haga su <em>consulta</em></h2>
       <div class="contacto-top-rule"></div>
-      <p>Consulte a nuestro equipo de profesionales especializados en distintas &aacute;reas y recibir&aacute; asesoramiento inmediato. La primera consulta es sin cargo y podremos coordinar una entrevista para escucharlo y asesorarlo.</p>
+      <p>Consulte a nuestro equipo de profesionales especializados en distintas &aacute;reas y recibir&aacute; asesoramiento inmediato. Coordinaremos una entrevista para escucharlo y asesorarlo de forma personalizada.</p>
     </div>
     <div class="estudios-grid reveal">
       <div class="estudio-card">
@@ -608,6 +613,9 @@
 <!-- WA FLOAT -->
 <a href="https://wa.me/5491150105070" target="_blank" class="wa-float" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" aria-label="Volver arriba"><i class="fa-solid fa-chevron-up"></i></button>
+
 <script>
   // SPLASH
   const splash = document.getElementById('splash');
@@ -625,6 +633,7 @@
     const scrolled = window.scrollY > 60;
     const heroH = document.getElementById('hero').offsetHeight;
     document.querySelector('.wa-float').classList.toggle('visible', window.scrollY > heroH * 0.8);
+    document.getElementById('backTop').classList.toggle('visible', window.scrollY > heroH * 0.8);
     if (isMobile) {
       headerEl.classList.toggle('transparent', !scrolled);
       headerEl.classList.toggle('scrolled', scrolled);
@@ -649,6 +658,11 @@
     mNav.classList.remove('open');
     updateHeaderState();
   }));
+
+  // BACK TO TOP
+  document.getElementById('backTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // COUNTERS
   const counterObs = new IntersectionObserver((entries) => {
