@@ -65,7 +65,7 @@
     #menu-open span { display: block; width: 22px; height: 2px; background: var(--brown); }
 
     /* ── MOBILE NAV ── */
-    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 110px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
+    #mobile-nav { position: fixed; top: 0; right: 0; bottom: 0; width: min(320px, 85vw); background: var(--white); border-left: 2px solid var(--gold); padding: 80px 2rem 2rem; display: flex; flex-direction: column; gap: 0; z-index: 1001; transform: translateX(110%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); box-shadow: -8px 0 32px rgba(65,57,52,0.18); }
     #mobile-nav.open { transform: translateX(0); }
     /* Botón toggle dentro del panel */
     #menu-toggle { position: absolute; top: 1.6rem; right: 1.6rem; display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; z-index: 1; }
@@ -287,6 +287,9 @@
 </header>
 <nav id="mobile-nav">
   <button id="menu-toggle" aria-label="Cerrar men&uacute;"><span></span><span></span><span></span></button>
+  <div style="text-align:center; padding: 0 1rem 1.5rem; border-bottom: 1px solid var(--cream-dk); margin-bottom: 0.5rem;">
+    <a href="./index.html"><img src="./logo.png" alt="Estudio Viotti Abogados" style="height:48px; display:inline-block;" /></a>
+  </div>
   <a href="./index.html">Inicio</a>
   <a href="./planificacion.html" class="active">Planificaci&oacute;n Patrimonial</a>
   <a href="./laboral.html">Derecho Laboral</a>
